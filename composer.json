@@ -9,16 +9,6 @@
             "email": "it@1815.nl"
         }
     ],
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../wp-turbo-bundle"
-        },
-        {
-            "type": "path",
-            "url": "../wp-twig-bundle"
-        }
-    ],
     "require": {
         "php": "^8.3",
         "achttienvijftien/wp-turbo-bundle": "@dev",

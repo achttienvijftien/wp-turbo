@@ -1,0 +1,35 @@
+{
+    "name": "achttienvijftien/wp-turbo",
+    "description": "Symfony UX Turbo for WordPress: the installable mu-plugin carrying the frontend (JS runtime, asset enqueue) on top of achttienvijftien/wp-turbo-bundle",
+    "type": "wordpress-muplugin",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "1815",
+            "email": "it@1815.nl"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../wp-turbo-bundle"
+        },
+        {
+            "type": "path",
+            "url": "../wp-twig-bundle"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "achttienvijftien/wp-turbo-bundle": "@dev",
+        "composer/installers": "^1.8 || ^2.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

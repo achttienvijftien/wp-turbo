@@ -31,5 +31,10 @@
         "achttienvijftien/building-techniques": "^1.1",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "phpcompatibility/phpcompatibility-wp": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AchttienVijftien\\Plugin\\WpTurbo\\": "src/"
+        }
     }
 }

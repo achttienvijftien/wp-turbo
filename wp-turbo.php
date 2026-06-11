@@ -21,3 +21,9 @@ if (
 ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
+
+// Class_exists guards the standalone case where no autoloader knows the
+// package yet (e.g. a bare checkout without composer install).
+if ( class_exists( \AchttienVijftien\Plugin\WpTurbo\Asset::class ) ) {
+	( new \AchttienVijftien\Plugin\WpTurbo\Asset( __DIR__ ) )->add_hooks();
+}

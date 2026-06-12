@@ -8,12 +8,14 @@
 namespace AchttienVijftien\Plugin\WpTurbo;
 
 /**
- * Registers the Turbo runtime script from the webpack manifest.
+ * The default Turbo runtime carrier.
  *
- * Registration only: whatever prints a <turbo-frame>/<turbo-stream> calls
- * wp_enqueue_script( self::RUNTIME_HANDLE ) at print time, so the script
- * only ships on pages that actually use it. Footer + defer is fine: lazy
- * frames load on/after page load anyway.
+ * Registers the runtime script from the webpack manifest and enqueues it
+ * when wp-turbo-bundle announces a printed frame placeholder through the
+ * wp_turbo/frame_placeholder action, so the script only ships on pages
+ * that actually use it. A theme bundling its own Turbo runtime replaces
+ * this by listening to the same action. Footer + defer is fine: frames
+ * load on/after page load anyway.
  *
  * @package AchttienVijftien\Plugin\WpTurbo
  */
@@ -39,6 +41,20 @@ class Asset {
 	 */
 	public function add_hooks(): void {
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_runtime' ] );
+		add_action( 'wp_turbo/frame_placeholder', [ $this, 'enqueue_runtime' ] );
+	}
+
+	/**
+	 * Enqueues the runtime; fired per printed frame placeholder.
+	 *
+	 * Placeholders print after wp_enqueue_scripts ran, which is fine for a
+	 * footer script; should one ever print before registration, WordPress
+	 * parks the enqueue and promotes it when register_runtime() runs.
+	 *
+	 * @return void
+	 */
+	public function enqueue_runtime(): void {
+		wp_enqueue_script( self::RUNTIME_HANDLE );
 	}
 
 	/**

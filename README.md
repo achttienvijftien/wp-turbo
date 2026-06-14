@@ -19,8 +19,10 @@ WordPress projects require this package alongside the bundles:
 - `achttienvijftien/wp-twig-bundle`: the generic Twig bridge (host-owned
   environment, Timber adapter)
 
-Everything self-registers through composer autoload and the container
-filters. No activation, no config edits.
+The bundles register like native Symfony bundles via `config/bundles.php`
+(Flex recipes write those entries on `composer require`). This mu-plugin
+carries the frontend runtime: it loads its autoloader and registers the Turbo
+JS asset, listening on the `wp_turbo/frame_placeholder` contract.
 
 ## Development
 

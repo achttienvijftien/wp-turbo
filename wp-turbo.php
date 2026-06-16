@@ -11,12 +11,11 @@
  * @package AchttienVijftien\Plugin\WpTurbo
  */
 
-// The bundles self-register through composer autoload.files (this package's
-// vendor when loaded standalone via a mu-plugin loader; the consuming
-// project's vendor when required at project level). The guard keeps a double
-// load harmless.
+// Load this package's own autoloader when running standalone (its own vendor),
+// unless the consuming project's autoloader already registered the classes.
+// The guard keeps a double load harmless.
 if (
-	! \function_exists( 'AchttienVijftien\Bundle\WpTurboBundle\register_bundles' )
+	! \class_exists( \AchttienVijftien\Plugin\WpTurbo\Asset::class )
 	&& is_readable( __DIR__ . '/vendor/autoload.php' )
 ) {
 	require __DIR__ . '/vendor/autoload.php';
